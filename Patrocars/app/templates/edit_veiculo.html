@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Veículo{% endblock %}
+
+{% block content %}
+<h2>Editar Veículo</h2>
+<form action="/veiculos/{{ veiculo.id }}/edit" method="post">
+    <label for="cor">Cor:</label>
+    <input type="text" id="cor" name="cor" value="{{ veiculo.cor }}" required><br>
+    
+    <label for="ano_fabricacao">Ano de Fabricação:</label>
+    <input type="number" id="ano_fabricacao" name="ano_fabricacao" value="{{ veiculo.ano_fabricacao }}" required><br>
+    
+    <label for="ano_modelo">Ano do Modelo:</label>
+    <input type="number" id="ano_modelo" name="ano_modelo" value="{{ veiculo.ano_modelo }}" required><br>
+    
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor" name="valor" value="{{ veiculo.valor }}" required><br>
+    
+    <label for="placa">Placa:</label>
+    <input type="text" id="placa" name="placa" value="{{ veiculo.placa }}" required><br>
+    
+    <label for="vendido">Vendido:</label>
+    <input type="checkbox" id="vendido" name="vendido" {% if veiculo.vendido %}checked{% endif %}><br>
+
+    <label for="montadora_id">Montadora:</label>
+    <select id="montadora_id" name="montadora_id" onchange="fetchModelos()">
+        <option value="">Selecione uma montadora</option>
+        {% for montadora in montadoras %}
+        <option value="{{ montadora.id }}" {% if montadora.id == veiculo.modelo.montadora_id %}selected{% endif %}>
+            {{ montadora.nome }}
+        </option>
+        {% endfor %}
+    </select><br>
+    
+    <label for="modelo_id">Modelo:</label>
+    <select id="modelo_id" name="modelo_id" required>
+        <option value="">Selecione uma montadora primeiro</option>
+        {% for modelo in modelos %}
+        <option value="{{ modelo.id }}" {% if modelo.id == veiculo.modelo_id %}selected{% endif %}>
+            {{ modelo.nome }}
+        </option>
+        {% endfor %}
+    </select><br>
+
+    <button type="submit">Atualizar Veículo</button>
+</form>
+
+<script>
+    function fetchModelos() {
+        const montadoraId = document.getElementById('montadora_id').value;
+        const modeloSelect = document.getElementById('modelo_id');
+
+        modeloSelect.innerHTML = '<option value="">Carregando modelos...</option>';
+
+        fetch(`/modelos/montadora/${montadoraId}`)
+            .then(response => response.json())
+            .then(data => {
+                modeloSelect.innerHTML = '<option value="">Selecione um modelo</option>';
+                data.modelos.forEach(modelo => {
+                    const option = document.createElement('option');
+                    option.value = modelo.id;
+                    option.textContent = modelo.nome;
+                    modeloSelect.appendChild(option);
+                });
+            })
+            .catch(error => {
+                modeloSelect.innerHTML = '<option value="">Erro ao carregar modelos</option>';
+                console.error('Erro ao carregar modelos:', error);
+            });
+    }
+</script>
+{% endblock %}

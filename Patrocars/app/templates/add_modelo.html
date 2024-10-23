@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar Modelo{% endblock %}
+
+{% block content %}
+<h2>Adicionar Novo Modelo de Veículo</h2>
+<form action="/modelos/add" method="post">
+    <label for="nome">Nome do Modelo:</label>
+    <input type="text" id="nome" name="nome" required><br>
+
+    <label for="montadora_id">Montadora:</label>
+    <select id="montadora_id" name="montadora_id">
+        {% for montadora in montadoras %}
+        <option value="{{ montadora.id }}">{{ montadora.nome }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="valor_referencia">Valor de Referência:</label>
+    <input type="number" id="valor_referencia" name="valor_referencia" step="0.01" required><br>
+
+    <label for="motorizacao">Motorização:</label>
+    <input type="number" id="motorizacao" name="motorizacao" step="0.1" required><br>
+
+    <label for="turbo">Turbo:</label>
+    <input type="checkbox" id="turbo" name="turbo"><br>
+
+    <label for="automatico">Automático:</label>
+    <input type="checkbox" id="automatico" name="automatico"><br>
+
+    <button type="submit">Adicionar Modelo</button>
+</form>
+{% endblock %}

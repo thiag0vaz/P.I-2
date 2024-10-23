@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Veículos{% endblock %}
+
+{% block content %}
+<h2>Lista de Veículos</h2>
+<ul>
+    {% for veiculo in veiculos %}
+    <li>
+        Placa: {{ veiculo.placa }} - Cor: {{ veiculo.cor }} - Ano: {{ veiculo.ano_fabricacao }}/{{ veiculo.ano_modelo }} - Valor: {{ veiculo.valor }} -  Modelo: {{ veiculo.modelo.nome }} - Montadora: {{ veiculo.modelo.montadora.nome }}
+        <a href="/veiculos/{{ veiculo.id }}/edit">Editar</a> | 
+        <a href="/veiculos/{{ veiculo.id }}/delete">Remover</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/veiculos/add">Adicionar Veículo</a>
+{% endblock %}

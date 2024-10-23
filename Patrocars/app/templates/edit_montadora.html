@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Montadora{% endblock %}
+
+{% block content %}
+<h2>Editar Montadora</h2>
+<form action="/montadoras/{{ montadora.id }}/edit" method="post">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" value="{{ montadora.nome }}" required><br>
+    
+    <label for="pais">País:</label>
+    <input type="text" id="pais" name="pais" value="{{ montadora.pais }}" required><br>
+    
+    <label for="ano_fundacao">Ano de Fundação:</label>
+    <input type="number" id="ano_fundacao" name="ano_fundacao" value="{{ montadora.ano_fundacao }}" required><br>
+    
+    <button type="submit">Atualizar Montadora</button>
+</form>
+{% endblock %}

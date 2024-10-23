@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Modelo{% endblock %}
+
+{% block content %}
+<h2>Editar Modelo de Veículo</h2>
+<form action="/modelos/{{ modelo.id }}/edit" method="post">
+    <label for="nome">Nome do Modelo:</label>
+    <input type="text" id="nome" name="nome" value="{{ modelo.nome }}" required><br>
+
+    <label for="montadora_id">Montadora:</label>
+    <select id="montadora_id" name="montadora_id">
+        {% for montadora in montadoras %}
+        <option value="{{ montadora.id }}" {% if montadora.id == modelo.montadora_id %}selected{% endif %}>
+            {{ montadora.nome }}
+        </option>
+        {% endfor %}
+    </select><br>
+
+    <label for="valor_referencia">Valor de Referência:</label>
+    <input type="number" id="valor_referencia" name="valor_referencia" step="0.01" value="{{ modelo.valor_referencia }}" required><br>
+
+    <label for="motorizacao">Motorização:</label>
+    <input type="number" id="motorizacao" name="motorizacao" step="0.1" value="{{ modelo.motorizacao }}" required><br>
+
+    <label for="turbo">Turbo:</label>
+    <input type="checkbox" id="turbo" name="turbo" {% if modelo.turbo %}checked{% endif %}><br>
+
+    <label for="automatico">Automático:</label>
+    <input type="checkbox" id="automatico" name="automatico" {% if modelo.automatico %}checked{% endif %}><br>
+
+    <button type="submit">Atualizar Modelo</button>
+</form>
+{% endblock %}

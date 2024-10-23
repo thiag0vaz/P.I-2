@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Montadoras{% endblock %}
+
+{% block content %}
+<h2>Lista de Montadoras</h2>
+<ul>
+    {% for montadora in montadoras %}
+    <li>
+        {{ montadora.nome }} - {{ montadora.pais }} ({{ montadora.ano_fundacao }})
+        <a href="/montadoras/{{ montadora.id }}/edit">Editar</a> | 
+        <a href="/montadoras/{{ montadora.id }}/delete">Remover</a>
+    </li>
+    {% endfor %}
+</ul>
+<a href="/montadoras/add">Adicionar Montadora</a>
+{% endblock %}
