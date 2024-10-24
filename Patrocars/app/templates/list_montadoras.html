@@ -4,14 +4,14 @@
 
 {% block content %}
 <h2>Lista de Montadoras</h2>
-<ul>
+<div class="montadora-list">
     {% for montadora in montadoras %}
-    <li>
-        {{ montadora.nome }} - {{ montadora.pais }} ({{ montadora.ano_fundacao }})
-        <a href="/montadoras/{{ montadora.id }}/edit">Editar</a> | 
-        <a href="/montadoras/{{ montadora.id }}/delete">Remover</a>
-    </li>
+    <div class="montadora-container">
+        <p>Nome: {{ montadora.nome }} - País: {{ montadora.pais }} - Ano de Fundação: {{ montadora.ano_fundacao }}</p>
+        <a href="/montadoras/{{ montadora.id }}/edit" class="button-edit">Editar</a>
+        <a href="/montadoras/{{ montadora.id }}/delete" class="button-remove">Remover</a>
+    </div>
     {% endfor %}
-</ul>
-<a href="/montadoras/add">Adicionar Montadora</a>
+</div>
+<a href="/montadoras/add" class="button-add">Adicionar Montadora</a>
 {% endblock %}

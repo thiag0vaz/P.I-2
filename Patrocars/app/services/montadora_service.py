@@ -2,11 +2,6 @@ from sqlalchemy.orm import Session
 from models.montadora_model import Montadora
 
 def criar_montadora(db: Session, nome: str, pais: str, ano_fundacao: int) -> Montadora:
-    # Lógica de validação (opcional)
-    if ano_fundacao < 1800:
-        raise ValueError("Ano de fundação inválido")
-    
-    # Criação da Montadora
     montadora = Montadora(nome=nome, pais=pais, ano_fundacao=ano_fundacao)
     db.add(montadora)
     db.commit()

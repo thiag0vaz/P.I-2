@@ -4,14 +4,14 @@
 
 {% block content %}
 <h2>Lista de Veículos</h2>
-<ul>
+<div class="vehicle-list">
     {% for veiculo in veiculos %}
-    <li>
-        Placa: {{ veiculo.placa }} - Cor: {{ veiculo.cor }} - Ano: {{ veiculo.ano_fabricacao }}/{{ veiculo.ano_modelo }} - Valor: {{ veiculo.valor }} -  Modelo: {{ veiculo.modelo.nome }} - Montadora: {{ veiculo.modelo.montadora.nome }}
-        <a href="/veiculos/{{ veiculo.id }}/edit">Editar</a> | 
-        <a href="/veiculos/{{ veiculo.id }}/delete">Remover</a>
-    </li>
+    <div class="vehicle-container">
+        <p>Placa: {{ veiculo.placa }} - Cor: {{ veiculo.cor }} - Ano: {{ veiculo.ano_fabricacao }}/{{ veiculo.ano_modelo }} - Valor: {{ veiculo.valor }} -  Modelo: {{ veiculo.modelo.nome }} - Montadora: {{ veiculo.modelo.montadora.nome }}</p>
+        <a href="/veiculos/{{ veiculo.id }}/edit" class="button-edit">Editar</a> 
+        <a href="/veiculos/{{ veiculo.id }}/delete" class="button-remove">Remover</a>
+    </div>
     {% endfor %}
-</ul>
-<a href="/veiculos/add">Adicionar Veículo</a>
+</div>
+<a href="/veiculos/add" class="button-add">Adicionar Veículo</a>
 {% endblock %}

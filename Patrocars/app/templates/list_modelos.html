@@ -3,17 +3,15 @@
 {% block title %}Lista de Modelos{% endblock %}
 
 {% block content %}
-<h2>Lista de Modelos de Veículos</h2>
-<ul>
+<h2>Lista de Modelos</h2>
+<div class="modelo-list">
     {% for modelo in modelos %}
-    <li>
-        {{ modelo.nome }} - {{ modelo.montadora.nome }} - Motorização: {{ modelo.motorizacao }}L - 
-        {{ "Turbo" if modelo.turbo else "Sem Turbo" }} - 
-        {{ "Automático" if modelo.automatico else "Manual" }} - Valor de Referência: R$ {{ modelo.valor_referencia }}
-        <a href="/modelos/{{ modelo.id }}/edit">Editar</a> | 
-        <a href="/modelos/{{ modelo.id }}/delete">Remover</a>
-    </li>
+    <div class="modelo-container">
+        <p>Nome: {{ modelo.nome }} - Motorização: {{ modelo.motorizacao }} - Montadora: {{ modelo.montadora.nome }}</p>
+        <a href="/modelos/{{ modelo.id }}/edit" class="button-edit">Editar</a>
+        <a href="/modelos/{{ modelo.id }}/delete" class="button-remove">Remover</a>
+    </div>
     {% endfor %}
-</ul>
-<a href="/modelos/add">Adicionar Modelo de Veículo</a>
+</div>
+<a href="/modelos/add" class="button-add">Adicionar Modelo</a>
 {% endblock %}

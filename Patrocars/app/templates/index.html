@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 
+{% block title %}Patrocars - Página Inicial{% endblock %}
+
 {% block content %}
-<h2>Bem-vindo a Patrocars!</h2>
-<p>Explore montadoras, modelos e veículos.</p>
+    <div class="cards-container">
+        <div class="card factory">
+            <h2>Montadoras</h2>
+            <p>Gerencie todas as montadoras</p>
+            <a href="/montadoras/" class="button">Acessar</a>
+        </div>
+
+        <div class="card blueprint">
+            <h2>Modelos</h2>
+            <p>Veja todos os modelos de veículos</p>
+            <a href="/modelos/" class="button">Acessar</a>
+        </div>
+
+        <div class="card car">
+            <h2>Veículos</h2>
+            <p>Gerencie os veículos disponíveis</p>
+            <a href="/veiculos/" class="button">Acessar</a>
+        </div>
+    </div>
 {% endblock %}

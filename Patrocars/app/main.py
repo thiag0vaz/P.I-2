@@ -13,7 +13,6 @@ app.include_router(montadora_controller.router)
 app.include_router(modelo_controller.router)
 app.include_router(veiculo_controller.router)
 
-# Montando a pasta static, solução mais simples que encontrei
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
